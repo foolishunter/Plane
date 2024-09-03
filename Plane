@@ -1,0 +1,18 @@
+from ADRpy import atmospheres as at
+from ADRpy import unitconversions as co
+
+# Instantiate an atmosphere object: an off-standard ISA
+# with a -10C offset
+isa_minus10 = at.Atmosphere(offset_deg=-10)
+
+# Query altitude
+altitude_ft = 38000
+altitude_m = co.feet2m(altitude_ft)
+
+# Query the ambient density in this model at the specified altitude
+print("ISA-10C density at", str(altitude_ft), "feet (geopotential):",
+    isa_minus10.airdens_kgpm3(altitude_m), "kg/m^3")
+
+# Query the speed of sound in this model at the specified altitude
+print("ISA-10C speed of sound at", str(altitude_ft), "feet (geopotential):",
+    isa_minus10.vsound_mps(altitude_m), "m/s")
